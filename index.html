@@ -50,23 +50,9 @@
       font-weight: 300;
       line-height: 1.6;
       overflow-x: hidden;
-      cursor: none;
     }
 
-    /* CUSTOM CURSOR */
-    #cursor {
-      position: fixed; top: 0; left: 0;
-      width: 10px; height: 10px;
-      background: #000;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background 0.2s;
-      mix-blend-mode: difference;
-    }
-    #cursor.expand { width: 40px; height: 40px; background: rgba(226,0,26,0.35); }
-    body * { cursor: none; }
+    a, button, .nav-cta, .btn-primary, .btn-ghost, .nav-links a { cursor: pointer; }
 
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 1px; }
@@ -727,10 +713,6 @@
 
       footer { padding: 36px 18px; }
       .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
-
-      body { cursor: auto; }
-      #cursor { display: none; }
-      body * { cursor: auto; }
     }
 
     /* TABLET */
@@ -749,8 +731,6 @@
   </style>
 </head>
 <body>
-
-<div id="cursor"></div>
 
 <!-- NAV -->
 <nav id="main-nav">
@@ -1089,7 +1069,7 @@
           <textarea name="message" rows="4" required placeholder="Budget, timeline, vision..." class="form-input"></textarea>
         </div>
         <div class="form-submit">
-          <button type="submit" class="btn-primary" style="border: none; font-family: 'Geist', sans-serif; cursor: none;">
+          <button type="submit" class="btn-primary" style="border: none; font-family: 'Geist', sans-serif;">
             Send Inquiry <i class="fas fa-arrow-right" style="font-size:12px"></i>
           </button>
         </div>
@@ -1111,16 +1091,6 @@
 
 <!-- JS -->
 <script>
-  const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('a, button, .timeline-item, .education-card, .stat-item, .service-category-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
-
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
