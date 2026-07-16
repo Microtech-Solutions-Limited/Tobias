@@ -446,7 +446,7 @@
     }
     .education-grid {
       max-width: 1400px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(2, 1fr);
+      display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 1px; background: var(--border);
     }
     .education-card {
@@ -537,54 +537,46 @@
       border-color: var(--red); color: var(--red); background: var(--surface);
     }
 
-    /* SKILLS */
-    #skills {
+    /* SERVICES */
+    #services {
       padding: 140px 40px;
       border-top: 1px solid var(--border);
     }
-    .skills-inner {
+    .service-category-grid {
       max-width: 1400px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 120px; align-items: center;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
     }
-    .skills-tags { display: flex; flex-wrap: wrap; gap: 14px; }
-    .skill-tag {
-      display: flex; align-items: center; gap: 10px;
-      padding: 14px 20px;
+    .service-category-card {
+      background: var(--paper);
+      padding: 44px 40px;
+      transition: background 0.4s;
+    }
+    .service-category-card:hover { background: var(--surface); }
+    .service-cat-icon {
+      width: 46px; height: 46px;
       border: 1px solid var(--border-strong);
       border-radius: 10px;
-      font-size: 13px; color: var(--ink);
-      transition: border-color 0.3s, background 0.3s;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red); font-size: 18px;
+      margin-bottom: 22px;
+      transition: border-color 0.3s;
     }
-    .skill-tag i { color: var(--red); font-size: 15px; }
-    .skill-tag:hover { border-color: var(--red); background: var(--surface); }
-    .skills-visual {
-      position: relative;
+    .service-category-card:hover .service-cat-icon { border-color: var(--red); }
+    .service-cat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 23px; font-weight: 400; color: var(--ink);
+      margin-bottom: 16px;
     }
-    .skills-visual img {
-      width: 100%; border-radius: var(--r);
-      filter: grayscale(25%); aspect-ratio: 4/5; object-fit: cover;
+    .service-cat-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .service-cat-list li {
+      font-size: 13px; color: var(--muted); line-height: 1.6;
+      padding-left: 16px; position: relative;
     }
-    .skills-badge {
-      position: absolute; top: 32px; right: -24px;
-      background: var(--ink);
-      border: 1px solid var(--red);
-      border-radius: 12px;
-      padding: 20px 24px;
-      min-width: 210px;
+    .service-cat-list li::before {
+      content: ''; position: absolute; left: 0; top: 9px;
+      width: 6px; height: 1px; background: var(--ink);
     }
-    .skills-badge-label {
-      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(255,255,255,0.55); margin-bottom: 14px;
-    }
-    .badge-row {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 16px;
-      font-size: 13px; padding: 6px 0;
-      color: #fff;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
-    .badge-row:last-child { border-bottom: none; }
     .badge-value { color: rgba(255,255,255,0.6); font-size: 12px; text-align: right; }
 
     /* CONTACT */
@@ -720,9 +712,9 @@
       .promo-btns { flex-direction: column; align-items: stretch; gap: 12px; }
       .btn-primary, .btn-ghost { width: 100%; justify-content: center; padding: 16px 24px; font-size: 11px; }
 
-      #skills { padding: 72px 18px; }
-      .skills-inner { grid-template-columns: 1fr; gap: 40px; }
-      .skills-visual { display: none; }
+      #services { padding: 72px 18px; }
+      .service-category-grid { grid-template-columns: 1fr; }
+      .service-category-card { padding: 32px 22px; }
 
       #contact { padding: 72px 18px; }
       .contact-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -741,13 +733,12 @@
       .hero-content { padding: 0 28px 72px; }
       .stat-item { padding: 28px 24px; }
       .stat-num { font-size: 44px; }
-      #about, #experience, #education, #promo, #skills, #contact { padding: 100px 28px; }
+      #about, #experience, #education, #promo, #services, #contact { padding: 100px 28px; }
       #about { max-width: 100%; }
       .about-grid { gap: 60px; }
-      .skills-inner { gap: 60px; }
       .contact-inner { gap: 60px; }
       .scroller::before, .scroller::after { width: 100px; }
-      .skills-badge { right: 0; }
+      .service-category-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -763,7 +754,7 @@
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
-      <a href="#skills">Skills</a>
+      <a href="#services">Services</a>
     </div>
     <a href="#contact" class="nav-cta">Let's connect</a>
   </div>
@@ -807,7 +798,7 @@
     </div>
     <div class="stat-item">
       <i class="fas fa-layer-group stat-icon"></i>
-      <div class="stat-num">4</div>
+      <div class="stat-num">6</div>
       <div class="stat-label">Core professional disciplines</div>
     </div>
     <div class="stat-item">
@@ -837,9 +828,7 @@
       <div class="section-label">01 — About</div>
       <h2 class="about-headline">Where the story<br>meets the shot.</h2>
       <div class="about-body">
-        <p>I'm Tobias Kiplangat Naibei — an industrious, self-motivated and highly productive professional with a diverse skill set spanning journalism, media production, marketing, and technical support. I'm a strong communicator, team player, and effective problem-solver, adaptable to dynamic working environments.</p>
-        <p>I'm currently pursuing a Master's in Journalism and Mass Communication at Chuka University while working as a freelance researcher and journalist — conducting academic research, data analysis, and media consultancy for private clients and SMEs, alongside photography and videography assignments.</p>
-        <p>Previously, as Communications and Marketing Officer at Sed-Tech Company Ltd, I managed brand communications and marketing while also serving as an in-house CCTV video security and surveillance specialist — a blend of media and technical expertise that continues to define my work today.</p>
+        <p>I am a communications and media professional dedicated to transforming ideas into meaningful impact through strategic communication, ethical storytelling, innovative technology, and creative visual design. With a strong foundation in journalism, public relations, graphic design, and academic research, I help individuals, organizations, and institutions communicate with clarity, credibility, and purpose. My expertise extends to qualitative research and advanced data analysis using industry-standard software, complemented by practical experience in digital technologies, media production, ICT solutions, and technology-driven communication systems. Versatile, innovative, and committed to the highest ethical standards, I deliver integrated communication and technology solutions that inform, inspire, and create lasting value.</p>
       </div>
       <div class="about-memberships">
         <span class="membership-pill"><i class="fas fa-users"></i> Mahnoor Freelance Researchers</span>
@@ -968,32 +957,78 @@
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="skills-inner">
-    <div class="reveal">
-      <div class="section-label">04 — Skills</div>
-      <h2 class="about-headline" style="margin-bottom: 48px;">Core skills.</h2>
-      <div class="skills-tags">
-        <span class="skill-tag"><i class="fas fa-bullhorn"></i> Marketing, Corporate Branding &amp; PR</span>
-        <span class="skill-tag"><i class="fas fa-users"></i> Human Resource Management</span>
-        <span class="skill-tag"><i class="fas fa-desktop"></i> Computer Management (Software &amp; Hardware)</span>
-        <span class="skill-tag"><i class="fas fa-camera-retro"></i> Photography &amp; Advanced Graphic Design</span>
-        <span class="skill-tag"><i class="fas fa-video"></i> Videography &amp; Video Editing</span>
-        <span class="skill-tag"><i class="fas fa-headphones"></i> Audio Editing &amp; Sound Management</span>
-        <span class="skill-tag"><i class="fas fa-database"></i> Data Mining &amp; Social Media Management</span>
-        <span class="skill-tag"><i class="fas fa-shield-halved"></i> CCTV / Video Security &amp; Surveillance</span>
-      </div>
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">04 — Services</div>
+      <h2 class="services-headline">What I<br>offer.</h2>
     </div>
-    <div class="skills-visual reveal" style="transition-delay: 0.15s">
-      <img src="images/Social2.jpg" alt="Tobias Kiplangat Naibei at work">
-      <div class="skills-badge">
-        <div class="skills-badge-label">Currently</div>
-        <div class="badge-row"><span>🎓 School</span><span class="badge-value">Chuka University</span></div>
-        <div class="badge-row"><span>🧭 Role</span><span class="badge-value">Freelance Journalist</span></div>
-        <div class="badge-row"><span>📍 Based in</span><span class="badge-value">Chuka, Kenya</span></div>
-        <div class="badge-row"><span>🕐 Available</span><span class="badge-value">Freelance &amp; consultancy</span></div>
-      </div>
+    <p class="services-sub">Integrated communication and technology solutions — across six disciplines, from newsroom to research lab.</p>
+  </div>
+  <div class="service-category-grid reveal">
+    <div class="service-category-card">
+      <div class="service-cat-icon"><i class="fas fa-newspaper"></i></div>
+      <h3 class="service-cat-title">Journalism</h3>
+      <ul class="service-cat-list">
+        <li>Radio Production</li>
+        <li>TV Broadcasting</li>
+        <li>News Reporting</li>
+        <li>Feature Writing</li>
+        <li>Investigative Journalism</li>
+      </ul>
+    </div>
+    <div class="service-category-card">
+      <div class="service-cat-icon"><i class="fas fa-camera-retro"></i></div>
+      <h3 class="service-cat-title">Photography</h3>
+      <ul class="service-cat-list">
+        <li>Event Photography</li>
+        <li>Portrait Photography</li>
+        <li>Documentary Photography</li>
+      </ul>
+    </div>
+    <div class="service-category-card">
+      <div class="service-cat-icon"><i class="fas fa-video"></i></div>
+      <h3 class="service-cat-title">Videography</h3>
+      <ul class="service-cat-list">
+        <li>Video Shooting</li>
+        <li>Documentary Production</li>
+        <li>Editing</li>
+      </ul>
+    </div>
+    <div class="service-category-card">
+      <div class="service-cat-icon"><i class="fas fa-palette"></i></div>
+      <h3 class="service-cat-title">Graphic Design</h3>
+      <ul class="service-cat-list">
+        <li>Photoshop</li>
+        <li>Adobe Premiere Pro</li>
+        <li>Illustrator</li>
+        <li>Canva</li>
+        <li>Branding</li>
+      </ul>
+    </div>
+    <div class="service-category-card">
+      <div class="service-cat-icon"><i class="fas fa-network-wired"></i></div>
+      <h3 class="service-cat-title">Technology</h3>
+      <ul class="service-cat-list">
+        <li>Computer Repair (Software &amp; Hardware)</li>
+        <li>CCTV Installation</li>
+        <li>Networking</li>
+        <li>IT Support</li>
+      </ul>
+    </div>
+    <div class="service-category-card">
+      <div class="service-cat-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+      <h3 class="service-cat-title">Research</h3>
+      <ul class="service-cat-list">
+        <li>Qualitative Data Analysis</li>
+        <li>NVivo</li>
+        <li>ATLAS.ti</li>
+        <li>MAXQDA</li>
+        <li>SPSS</li>
+        <li>Qualitative Research</li>
+        <li>Academic Writing</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1075,7 +1110,7 @@
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   });
-  document.querySelectorAll('a, button, .timeline-item, .education-card, .stat-item, .skill-tag').forEach(el => {
+  document.querySelectorAll('a, button, .timeline-item, .education-card, .stat-item, .service-category-card').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
   });
